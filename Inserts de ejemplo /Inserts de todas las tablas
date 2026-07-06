@@ -1,0 +1,67 @@
+--INSERTS DEFINITIVO
+USE DB_TPINTEGRADOR
+
+INSERT INTO Roles (Nombre)
+VALUES ('Administrador'), ('Doctor'), ('Paciente')
+
+INSERT INTO ObraSocial (Nombre)
+VALUES ('OSDE'), ('Swiss Medical'), ('PAMI')
+
+INSERT INTO Especialidades (Nombre)
+VALUES ('Cardiología'), ('Pediatría'), ('Dermatología')
+
+INSERT INTO EstadosTurnos (Nombre)
+VALUES ('Pendiente'), ('Confirmado'), ('Cancelado')
+
+INSERT INTO Consultorios (Direccion, Telefono, Mail)
+VALUES 
+('Av. Siempreviva 123', '1122334455', 'consultorio1@mail.com'),
+('Calle Falsa 742', '1199887766', 'consultorio2@mail.com')
+
+INSERT INTO Usuarios (IdRol, NombreUsuario, Contrasenia)
+VALUES
+(2, 'dr.juan', '1234'),     
+(2, 'dr.maria', '1234'),    
+(3, 'pac.carlos', '1234'),  
+(3, 'pac.luisa', '1234'),   
+(2, 'dr.inactivo', '1234')  
+
+INSERT INTO Doctores (IDEspecialidad, Nombre, Apellido, Matricula, Telefono, Mail, IdUsuario, Activo)
+VALUES
+(1, 'Juan', 'Pérez', 'MAT123', '1144556677', 'juan.perez@mail.com', 1, 1),  
+(2, 'María', 'Gómez', 'MAT456', '1177889900', 'maria.gomez@mail.com', 2, 1), 
+(3, 'Roberto', 'Sosa', 'MAT789', '1100112233', 'rsosa@mail.com', 5, 0)       
+
+INSERT INTO Pacientes (DNI, Nombre, Apellido, FechaNacimiento, Telefono, Mail, IDObraSocial, IdUsuario)
+VALUES
+(30111222, 'Carlos', 'López', '1985-06-10', 1133445566, 'carlos@mail.com', 1, 3),
+(28999888, 'Luisa', 'Martínez', '1990-03-22', 1144556677, 'luisa@mail.com', 2, 4)
+
+INSERT INTO DoctoresxObraSocial (IDDoctor, IDObraSocial)
+VALUES
+(1, 1), (1, 2),
+(2, 2), (2, 3)
+
+INSERT INTO ConsultoriosxDoctor (IDDoctor, IDConsultorio, FechaContratacion)
+VALUES
+(1, 1, '2024-01-01'),  
+(2, 1, '2024-01-01'),  
+(1, 2, '2024-01-01'),  
+(3, 1, '2024-01-01')   
+
+INSERT INTO AgendaDoctor (IDConsultoriosxDoctor, DiaSemana, HoraInicio, HoraFin)
+VALUES
+(1, 1, '08:00', '12:00'),
+(2, 2, '10:00', '14:00'),
+(3, 3, '09:00', '13:00')
+
+INSERT INTO Turnos (IDConsultoriosxDoctor, IDEstado, Fecha, Hora, IDPaciente)
+VALUES
+(1, 1, '2026-06-25', '10:00', 1),
+(2, 1, '2026-06-26', '11:00', 2),
+(3, 2, '2026-06-27', '09:30', 1)
+
+INSERT INTO GestionTurnos (IDTurno, FechaCambio, IDEstadoAnterior, IDEstadoActual, Motivo)
+VALUES
+(1, '2026-06-20', 1, 2, 'Confirmado por el paciente'),
+(2, '2026-06-21', 1, 3, 'Cancelado por el paciente')
