@@ -1,5 +1,5 @@
 # Base-de-datos-para-Consultorios-Medicos
-📝Proyecto académico:
+📝Proyecto académico (Versión limpia):
 
 ⚕️Sistema de Gestión para Consultorio Médico.
 
